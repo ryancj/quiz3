@@ -1,0 +1,7 @@
+<h1>Idea Factory</h1>
+
+<% @ideas.each do |idea| %>
+<h2><%= link_to idea.title, idea_path(idea) %></h2>
+<p><%= idea.description %></p>
+<hr>
+<% end %>

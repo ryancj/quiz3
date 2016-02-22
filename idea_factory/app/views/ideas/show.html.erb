@@ -1,0 +1,8 @@
+<h2><%= @idea.title %></h2>
+
+<p><%= @idea.description %></p>
+
+<p><%= @idea.created_at %></p>
+
+<%= link_to 'Edit Idea', edit_idea_path %>
+<%= link_to 'Delete Idea', idea_path(@idea), method: :delete, data: { confirm: 'Are you sure?' } %>
