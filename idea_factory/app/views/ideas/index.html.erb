@@ -4,5 +4,21 @@
 <h2><%= link_to idea.title, idea_path(idea) %></h2>
 <p><%= idea.description %></p>
 <p>Created by <%= idea.user_full_name %></p>
+
+
+<% group = idea.group_for(current_user) %>
+<% if group %>
+  <%= link_to "Joined", idea_group_path(idea, group), method: :delete  %>
+<% else %>
+  <%= link_to "Join", idea_groups_path(idea), method: :post %>
+<% end %>
+
+<% like = idea.like_for(current_user) %>
+<% if like %>
+  <%= link_to "Liked", idea_like_path(idea, like), method: :delete  %>
+<% else %>
+  <%= link_to "Like", idea_likes_path(idea), method: :post %>
+<% end %>
+(<%= idea.likes.count %>)
 <hr>
 <% end %>

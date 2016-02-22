@@ -12,17 +12,18 @@ before_action :authenticate_user!, except: [:index, :show]
     if @idea.save
       redirect_to idea_path(@idea), notice: 'Idea Listed.'
     else
-
       render :new
     end
   end
 
   def show
     @idea = Idea.find params[:id]
+    @comment = Comment.new
   end
 
   def index
     @ideas = Idea.all
+    @like = @idea.like_for(current_user) if @like
   end
 
   def edit

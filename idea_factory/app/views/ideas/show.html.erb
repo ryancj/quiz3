@@ -5,6 +5,31 @@
 <p><%= @idea.created_at %></p>
 
 <p>Created by <%= @idea.user_full_name %></p>
+<p>Likes: <%= @idea.likes.count %></p>
+<p>
+Collaborators:
+<ol>
+<% @idea.groups.each do |user| %>
+  <li><%= user %></li>
+<% end %>
+</ol>
+</p>
+
+Comments:
+<p>
+<% @idea.comments.each do |comm| %>
+  <%= comm.comment %>
+  <%= link_to "Delete Comment", [@idea, comm], method: :delete, data: {confirm: "Are you sure?"} %>
+  <hr>
+<% end %>
+</p>
+
+<p>
+<%= form_for [@idea, @comment] do |f| %>
+  <%= f.text_area :comment %>
+  <p><%= f.submit %></p>
+<% end %>
+</p>
 
 <%= link_to 'Edit Idea', edit_idea_path %>
 <%= link_to 'Delete Idea', idea_path(@idea), method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,7 +1,13 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :ideas, dependent: :nullify
+  belongs_to :idea
+
+  has_many :likes, dependent: :destroy
+  has_many :ideas, through: :likes
+
+  has_many :groups, dependent: :destroy
+  has_many :grouped_ideas, through: :groups, source: :idea
 
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
