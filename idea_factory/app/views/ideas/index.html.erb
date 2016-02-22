@@ -3,5 +3,6 @@
 <% @ideas.each do |idea| %>
 <h2><%= link_to idea.title, idea_path(idea) %></h2>
 <p><%= idea.description %></p>
+<p>Created by <%= idea.user_full_name %></p>
 <hr>
 <% end %>

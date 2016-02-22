@@ -4,5 +4,7 @@
 
 <p><%= @idea.created_at %></p>
 
+<p>Created by <%= @idea.user_full_name %></p>
+
 <%= link_to 'Edit Idea', edit_idea_path %>
 <%= link_to 'Delete Idea', idea_path(@idea), method: :delete, data: { confirm: 'Are you sure?' } %>
